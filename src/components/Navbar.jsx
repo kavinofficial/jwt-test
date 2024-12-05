@@ -28,6 +28,11 @@ const Navbar = () => {
         </Link>
       </li>
       <li>
+        <Link onClick={handleClick} className="innerLink" to="/users">
+          User Info
+        </Link>
+      </li>
+      <li>
         <Link onClick={handleClick} className="innerLink" to="/login">
           Login
         </Link>

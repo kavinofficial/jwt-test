@@ -18,8 +18,9 @@ public class JwtInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
         String stringUri = request.getRequestURI();
-        String authHeader = request.getHeader("Authorisation");
+        String authHeader = request.getHeader("Authorization");
         if (stringUri.contains("/login") || stringUri.contains("/register")) {
+            System.out.println(authHeader);
             return true;
         }
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
@@ -31,6 +32,7 @@ public class JwtInterceptor implements HandlerInterceptor {
             }
             return true;
         }
+        System.out.println("Final " + authHeader);
         response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         response.getWriter().write("Authorization header is missing or malformed");
         return false;

@@ -51,7 +51,7 @@ public class Jwtutils {
                 .add(claims)
                 .issuer(user.getName())
                 .issuedAt(new Date(current))
-                .expiration(new Date(current + 60 * 60 * 1000))
+                .expiration(new Date(current + 60 * 60 * 10))
                 .and()
                 .signWith(getSigningKey())
                 .compact();

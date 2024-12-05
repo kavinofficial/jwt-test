@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import Login from "./components/Login";
 import AuthProvider from "./components/AuthProvider";
 import { Logout } from "./components/Logout";
+import UserInfo from "./components/UserInfo";
 
 const App = () => {
   return (
@@ -31,6 +32,14 @@ const App = () => {
             element={
               <PrivateRoute>
                 <Hello2 />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/users"
+            element={
+              <PrivateRoute>
+                <UserInfo />
               </PrivateRoute>
             }
           />
