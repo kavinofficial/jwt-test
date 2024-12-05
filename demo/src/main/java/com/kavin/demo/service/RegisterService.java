@@ -1,6 +1,8 @@
 package com.kavin.demo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.kavin.demo.model.User;
@@ -14,8 +16,12 @@ public class RegisterService {
     @Autowired
     Jwtutils jwtutils;
 
-    public User registerClient(User user) {
-        jwtutils.generateJwt(user);
-        return registerRepo.save(user);
+    public ResponseEntity<?> registerClient(User user) {
+        User existingUser = registerRepo.findByEmailIgnoreCase(user.getEmail());
+        if (existingUser == null) {
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("Email Already exists");
+        }
+        String token = jwtutils.generateJwt(user);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(token);
     }
 }

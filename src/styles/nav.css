@@ -1,0 +1,12 @@
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+nav li{
+    list-style: none;
+    padding: 5px;
+}
+.innerLink{
+    text-decoration: none;
+}

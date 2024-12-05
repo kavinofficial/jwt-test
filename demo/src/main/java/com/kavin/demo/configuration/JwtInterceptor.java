@@ -18,7 +18,7 @@ public class JwtInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
         String stringUri = request.getRequestURI();
-        String authHeader = request.getHeader("Authorization");
+        String authHeader = request.getHeader("Authorisation");
         if (stringUri.contains("/login") || stringUri.contains("/register")) {
             return true;
         }

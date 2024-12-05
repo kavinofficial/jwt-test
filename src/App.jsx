@@ -6,36 +6,36 @@ import Home from "./components/Home";
 import PrivateRoute from "./components/PrivateRoute";
 import Navbar from "./components/Navbar";
 import Login from "./components/Login";
+import AuthProvider from "./components/AuthProvider";
+import { Logout } from "./components/Logout";
 
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // For demonstration purposes
-
   return (
     <Router>
-      <Navbar />
-      <Routes>
-        {/* Public Route */}
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-
-        {/* Private Routes */}
-        <Route
-          path="/hello1"
-          element={
-            <PrivateRoute isAuthenticated={isAuthenticated}>
-              <Hello1 />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/hello2"
-          element={
-            <PrivateRoute isAuthenticated={isAuthenticated}>
-              <Hello2 />
-            </PrivateRoute>
-          }
-        />
-      </Routes>
+      <AuthProvider>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/logout" element={<Logout />} />
+          <Route
+            path="/hello1"
+            element={
+              <PrivateRoute>
+                <Hello1 />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/hello2"
+            element={
+              <PrivateRoute>
+                <Hello2 />
+              </PrivateRoute>
+            }
+          />
+        </Routes>
+      </AuthProvider>
     </Router>
   );
 };

@@ -6,6 +6,7 @@ import com.kavin.demo.model.User;
 import com.kavin.demo.service.LoginService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -15,7 +16,7 @@ public class LoginController {
     LoginService loginService;
 
     @PostMapping("/login")
-    public User loginUser(@RequestBody User user) {
+    public ResponseEntity<?> loginUser(@RequestBody User user) {
         return loginService.loginUser(user);
     }
 
